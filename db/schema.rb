@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312170917) do
+ActiveRecord::Schema.define(version: 20140312183808) do
+
+  create_table "months", force: true do |t|
+    t.string   "title"
+    t.string   "completed_by"
+    t.boolean  "completed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "login",               default: "", null: false
@@ -29,6 +37,14 @@ ActiveRecord::Schema.define(version: 20140312170917) do
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
 
   create_table "weeks", force: true do |t|
+    t.string   "title"
+    t.string   "completed_by"
+    t.boolean  "completed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "years", force: true do |t|
     t.string   "title"
     t.string   "completed_by"
     t.boolean  "completed"

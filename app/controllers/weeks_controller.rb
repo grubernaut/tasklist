@@ -26,7 +26,7 @@ class WeeksController < ApplicationController
   def complete
     @week = Week.find(params[:id])
     @week.toggle!(:completed)
-    @week.completed_by = "testUserController"
+    @week.completed_by = current_user.login
 
     respond_to do |format|
       if @week.save
@@ -37,8 +37,6 @@ class WeeksController < ApplicationController
         format.json { render json: @week.errors, status: :unprocessable_entity }
       end
     end
-
-    #redirect_to :action => 'index'
   end
 
   # POST /weeks

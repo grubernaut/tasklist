@@ -1,5 +1,19 @@
 Tasklist::Application.routes.draw do
-  resources :months
+  resources :years do
+    member do
+      put :update
+      post :toggle
+      put :complete
+    end
+  end
+
+  resources :months do
+    member do
+      put :update
+      post :toggle
+      put :complete
+    end
+  end
 
   devise_for :users
   resources :weeks do
@@ -9,6 +23,7 @@ Tasklist::Application.routes.draw do
       put :complete
     end
   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

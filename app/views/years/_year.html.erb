@@ -1,0 +1,14 @@
+<%=form_for(year, url: complete_year_path(year), method: :put) do |f|%>
+  <% if year.completed? %>
+    <%= f.check_box :completed, :disabled => true %>
+    <%= f.text_field :title, "data-behavior" => "year_title_input", "data-original-value" => year.title %>
+    <%= f.text_field :completed_by, "data-behavior" => "year_auth_input", "data-original-value" => year.completed_by %>
+    <%= f.text_field :updated_at, "data-behavior" => "year_time_input", "data-original-value" => year.updated_at %>
+    <button type="submit">UnComplete Task</button>
+  <% else %> 
+    <%= f.check_box :completed, :disabled => true %>
+    <%= f.text_field :title, "data-behavior" => "year_title_input", "data-original-value" => year.title %>
+    <%= f.hidden_field :completed_by %>
+    <button type="submit">Complete Task</button>
+  <% end %> 
+<% end %> 

@@ -1,4 +1,5 @@
 class MonthsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_month, only: [:show, :edit, :update, :destroy]
 
   # GET /months
@@ -19,6 +20,23 @@ class MonthsController < ApplicationController
 
   # GET /months/1/edit
   def edit
+  end
+
+  # PUT /months/1/complete/
+  def complete
+    @month = Month.find(params[:id])
+    @month.toggle!(:completed)
+    @month.completed_by = current_user.login
+
+    respond_to do |format|
+      if @month.save
+        format.html { redirect_to months_url, notice: 'Item successfully Completed.' }
+        format.json { render action: 'show', status: :created, location: @month }
+      else
+        format.html {render action: 'new' }
+        format.json { render json: @month.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /months
