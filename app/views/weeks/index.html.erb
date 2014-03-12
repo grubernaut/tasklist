@@ -1,0 +1,7 @@
+<h1>Listing Weekly Tasks</h1>
+
+<%= form_for(Week.new, remote: true) do |f| %>
+  <%= f.text_field :title, placeholder: "New Task", id:"new-week", autofocus: true, "data-behavior" => "submit_on_enter" %>
+<% end %>
+
+<%= render @weeks.all %>

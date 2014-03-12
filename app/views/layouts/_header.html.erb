@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+  <div id="nav_bar">
+    <h3> Signed in as: <%= current_user.login %><%= button_to "Sign Out", destroy_user_session_path, :method => :delete %></h3>
+    <%= link_to "Weekly Items", :controller => :weeks, :action => :index %>
+  </div>
+<% end %>
