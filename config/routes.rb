@@ -20,6 +20,7 @@ Tasklist::Application.routes.draw do
     member do
       put :update
       post :toggle
+      get :alert
       put :complete
     end
   end

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Weekly Tasks That still need to be completed:</h1>
+    <ul>
+      <% @wuncompleted.each do |item| %>
+        <li><%= item.title %></li>
+      <% end %>
+    </ul>
+    <h1>Monthly Tasks that still need to be completed:</h1>
+    <ul>
+      <% @muncompleted.each do |item| %>
+        <li><%= item.title %></li>
+      <% end %>
+    </ul>
+    <h1>Yearly Tasks that still need to be completed:</h1>
+    <ul>
+      <% @yuncompleted.each do |item| %>
+        <li><%= item.title %></li>
+      <% end %>
+    </ul>
+  </body>
+</html>
+
+      

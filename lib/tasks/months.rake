@@ -5,8 +5,8 @@ namespace :app do
 
     #INSERT THESE
     [
-      {:title => "AutoMonthTask"},
-      {:title => "Auto2MonthTask"},
+      {:title => "AutoMonthTask", :completed => false},
+      {:title => "Auto2MonthTask", :completed => false},
     ].each do |attributes|
       Month.create(attributes)
     end

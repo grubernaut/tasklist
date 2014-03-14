@@ -24,3 +24,7 @@
 #  rake "app:populate_years"
 #  rake "app:populate_months"
 #end
+#
+#every 2.minutes do
+  #rake "app:alert_weeks"
+#end
