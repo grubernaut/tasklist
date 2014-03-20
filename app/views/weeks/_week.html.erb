@@ -1,14 +1,14 @@
 <%=form_for(week, url: complete_week_path(week), method: :put) do |f|%>
   <% if week.completed? %> 
     <%= f.check_box :completed, :disabled => true %>
-    <%= f.text_field :title, "data-behavior" => "week_title_input", "data-original-value" => week.title %>
-    <%= f.text_field :completed_by, "data-behavior" => "week_title_input", "data-original-value" => week.completed_by %>
-    <%= f.text_field :updated_at, "data-behavior" => "week_title_input", "data-original-value" => week.updated_at %>
+    <%= f.text_field :title, :size => 60, :disabled => true, :value => week.title %>
+    <%= f.text_field :completed_by, :size => 10, :disabled => true, :value => week.completed_by %>
+    <%= f.text_field :updated_at, :disabled => true, :size => 12, :value => week.updated_at.to_s(:short) %>
     <button type="submit">UnComplete Task</button>
   <% else %>
     <%= f.check_box :completed, :disabled => true %>
-    <%= f.text_field :title, "data-behavior" => "week_title_input", "data-original-value" => week.title %>
-    <%= f.hidden_field :completed_by, :value => week.title%>
+    <%= f.text_field :title, :size => 60, :disabled => true, :value => week.title %>
+    <%= f.hidden_field :completed_by, :size => 15, :disabled => true, :value => week.title%>
     <button type="submit">Complete Task</button>
   <% end %>
 <% end %>

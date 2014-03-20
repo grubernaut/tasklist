@@ -16,6 +16,12 @@
         <li><%= item.title %></li>
       <% end %>
     </ul>
+    <h1>Bi-Annual Tasks that still need to be completed:</h1>
+    <ul>
+      <% @buncompleted.each do |item| %>
+        <li><%= item.title %></li>
+      <% end %>
+    </ul>
     <h1>Yearly Tasks that still need to be completed:</h1>
     <ul>
       <% @yuncompleted.each do |item| %>

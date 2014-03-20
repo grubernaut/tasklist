@@ -5,7 +5,7 @@ class MonthsController < ApplicationController
   # GET /months
   # GET /months.json
   def index
-    @months = Month.all
+    @months = Month.all.order('created_at DESC').page(params[:page]).per_page(6)
   end
 
   # GET /months/1
@@ -30,7 +30,7 @@ class MonthsController < ApplicationController
 
     respond_to do |format|
       if @month.save
-        format.html { redirect_to months_url, notice: 'Item successfully Completed.' }
+        format.html { redirect_to :back, notice: 'Item successfully Completed.' }
         format.json { render action: 'show', status: :created, location: @month }
       else
         format.html {render action: 'new' }
@@ -60,7 +60,7 @@ class MonthsController < ApplicationController
   def update
     respond_to do |format|
       if @month.update(month_params)
-        format.html { redirect_to @month, notice: 'Month was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Month was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

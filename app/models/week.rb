@@ -5,4 +5,8 @@ class Week < ActiveRecord::Base
   def title=(title)
     write_attribute(:title, title.strip)
   end
+
+  def complete
+    write_attribute(:completed, true)
+  end
 end

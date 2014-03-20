@@ -1,4 +1,20 @@
 Tasklist::Application.routes.draw do
+  resources :biannuals do
+    member do
+      put :update
+      post :toggle
+      put :complete
+    end
+  end
+
+  resources :dailies do
+    member do
+      put :update
+      post :toggle
+      put :complete
+    end
+  end
+
   resources :years do
     member do
       put :update
@@ -80,5 +96,5 @@ Tasklist::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  root to: "weeks#index"
+  root to: "dailies#index"
 end

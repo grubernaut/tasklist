@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @daily.title %>
+</p>
+
+<p>
+  <strong>Completed by:</strong>
+  <%= @daily.completed_by %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @daily.completed %>
+</p>
+
+<%= link_to 'Edit', edit_daily_path(@daily) %> |
+<%= link_to 'Back', dailies_path %>

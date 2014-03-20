@@ -5,7 +5,7 @@ class WeeksController < ApplicationController
   # GET /weeks
   # GET /weeks.json
   def index
-    @weeks = Week.all
+    @weeks = Week.all.order('created_at DESC').page(params[:page]).per_page(4)
   end
 
   # GET /weeks/1
@@ -30,7 +30,7 @@ class WeeksController < ApplicationController
 
     respond_to do |format|
       if @week.save
-        format.html { redirect_to weeks_url, notice: 'Item successfully Completed.' }
+        format.html { redirect_to :back, notice: 'Item successfully Completed.' }
         format.json { render action: 'show', status: :created, location: @week }
       else
         format.html { render action: 'new' }
@@ -60,7 +60,7 @@ class WeeksController < ApplicationController
   def update
     respond_to do |format|
       if @week.update(week_params)
-        format.html { redirect_to weeks_url, notice: 'Todo was Completed Successfully' }
+        format.html { redirect_to :back, notice: 'Todo was Completed Successfully' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

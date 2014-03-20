@@ -1,9 +1,6 @@
 <h1>Listing Weekly Tasks</h1>
 
-<%= form_for(Week.new, remote: true) do |f| %>
-  <%= f.text_field :title, placeholder: "New Task", id:"new-week", autofocus: true, "data-behavior" => "submit_on_enter" %>
-<% end %>
-
-<div id="task_list">
+<div class="apple_pagination">
   <%= render @weeks.to_a %>
+  <%= will_paginate @weeks %>
 </div>

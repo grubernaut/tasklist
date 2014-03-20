@@ -32,9 +32,9 @@ Tasklist::Application.configure do
   config.action_mailer.smtp_settings = {
     address:  'smtp.gmail.com',
     port:     587,
-    domain:   'thedatacave.com',
-    user_name: '<username>',
-    password: '<password>',
+    domain:   'domain.com',
+    user_name: 'user@domain.com',
+    password: 'password',
     authentication: 'plain',
     enable_starttls_auto: true 
   }

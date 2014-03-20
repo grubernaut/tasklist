@@ -5,7 +5,7 @@ class YearsController < ApplicationController
   # GET /years
   # GET /years.json
   def index
-    @years = Year.all
+    @years = Year.all.order('created_at DESC').page(params[:page]).per_page(9)
   end
 
   # GET /years/1
@@ -30,7 +30,7 @@ class YearsController < ApplicationController
 
     respond_to do |format|
       if @year.save
-        format.html { redirect_to years_url, notice: 'Item Successfully Completed.' }
+        format.html { redirect_to :back, notice: 'Item Successfully Completed.' }
         format.json { render action: 'show', status: :created, location: @year }
       else
         format.html { render action: 'new' }
@@ -60,7 +60,7 @@ class YearsController < ApplicationController
   def update
     respond_to do |format|
       if @year.update(year_params)
-        format.html { redirect_to @year, notice: 'Year was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Year was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

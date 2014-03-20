@@ -1,8 +1,10 @@
 <% if user_signed_in? %>
   <div id="nav_bar">
     <h3> Signed in as: <%= current_user.login %><%= button_to "Sign Out", destroy_user_session_path, :method => :delete %></h3>
+    <%= link_to "Daily Items", :controller => :dailies, :action => :index %> 
     <%= link_to "Weekly Items", :controller => :weeks, :action => :index %>
     <%= link_to "Monthly Items", :controller => :months, :action => :index %>
+    <%= link_to "Bi-Annual Items", :controller => :biannuals, :action => :index %>
     <%= link_to "Yearly Items", :controller => :years, :action => :index %>
   </div>
 <% end %>

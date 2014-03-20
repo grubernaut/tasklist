@@ -30,9 +30,17 @@ gem 'jbuilder', '~> 1.2'
 # Devise for LDAP 
 gem 'devise'
 gem 'devise_ldap_authenticatable'
+gem 'devise-encryptable'
+
+#Bootstrap For Fancy Things
+gem 'twitter-bootstrap-rails'
+gem 'therubyracer'
 
 #Whenever For Automagically Adding Things
 gem 'whenever', :require => false
+
+#Will_Paginate for paging list items
+gem 'will_paginate', '~> 3.0.5'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

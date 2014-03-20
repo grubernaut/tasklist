@@ -1,0 +1,14 @@
+<%=form_for(daily, url: complete_daily_path(daily), method: :put) do |f|%>
+  <% if daily.completed? %> 
+    <%= f.check_box :completed, :disabled => true %>
+    <%= f.text_field :title, :size => 60, :disabled => true, :value => daily.title %>
+    <%= f.text_field :completed_by, :size => 10, :disabled => true, :value => daily.completed_by %>
+    <%= f.text_field :updated_at, :disabled => true, :size => 12, :value => daily.updated_at.to_s(:short) %>
+    <button type="submit">UnComplete Task</button>
+  <% else %>
+    <%= f.check_box :completed, :disabled => true %>
+    <%= f.text_field :title, :size => 60, :disabled => true, :value => daily.title %>
+    <%= f.hidden_field :completed_by, :size => 15, :disabled => true, :value => daily.title%>
+    <button type="submit">Complete Task</button>
+  <% end %>
+<% end %>

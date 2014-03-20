@@ -1,0 +1,14 @@
+<%=form_for(biannual, url: complete_biannual_path(biannual), method: :put) do |f|%>
+  <% if biannual.completed? %> 
+    <%= f.check_box :completed, :disabled => true %>
+    <%= f.text_field :title, :size => 60, :disabled => true, :value  => biannual.title %>
+    <%= f.text_field :completed_by, :size => 10, :disabled => true, :value => biannual.completed_by %>
+    <%= f.text_field :updated_at, :size => 12, :disabled => true, :value => biannual.updated_at.to_s(:short) %>
+    <button type="submit">UnComplete Task</button>
+  <% else %>
+    <%= f.check_box :completed, :disabled => true %>
+    <%= f.text_field :title, :size => 60, :disabled => true, :value => biannual.title %>
+    <%= f.hidden_field :completed_by, :size => 15, :disabled => true, :value => biannual.title%>
+    <button type="submit">Complete Task</button>
+  <% end %>
+<% end %>

@@ -1,9 +1,6 @@
 <h1>Listing Yearly Tasks</h1>
 
-<%= form_for(Year.new, remote:true) do |f| %>
-  <%= f.text_field :title, placeholder: "New Task", id:"new-year", autofocus:true, "data-behavior" => "submit_on_enter" %>
-<% end %> 
-
-<div id="task_list">
+<div class="apple_pagination">
   <%= render @years.to_a %>
+  <%= will_paginate @years %>
 </div>
