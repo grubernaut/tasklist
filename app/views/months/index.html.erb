@@ -1,6 +1,8 @@
-<h1>Listing Monthly Tasks</h1>
+<div class="monthly_list">
+  <h1>Listing Monthly Tasks</h1>
 
-<div class="apple_pagination">
-  <%= render @months.to_a %>
-  <%= will_paginate  @months %>
+  <div class="apple_pagination">
+    <%= render @months.to_a %>
+    <%= will_paginate  @months %>
+  </div>
 </div>

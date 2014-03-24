@@ -30,8 +30,7 @@ class DailiesController < ApplicationController
 
     respond_to do |format|
       if @daily.save
-        #format.html { redirect_to dailies_url, notice: 'Item successfully completed.' }
-        format.html { redirect_to :back, notice: 'Item successfully completed.' }
+        format.html { redirect_to :back, notice: 'Item successfully completed.'} 
         format.json { render action: 'show', status: :created, location: @daily }
       else 
         format.html { render action: 'new' }
@@ -61,7 +60,6 @@ class DailiesController < ApplicationController
   def update
     respond_to do |format|
       if @daily.update(daily_params)
-        #format.html { redirect_to dailies_url, notice: 'Daily was successfully updated.' }
         format.html { redirect_to :back, notice: 'Daily was successfully updated.' }
         format.json { head :no_content }
       else

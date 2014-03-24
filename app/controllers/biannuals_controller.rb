@@ -29,7 +29,7 @@ class BiannualsController < ApplicationController
 
     respond_to do |format|
       if @biannual.save
-        format.html { redirect_to :back, notice: 'Item was successfully completed.' }
+        format.html { redirect_to :back, notice: 'Item successfully completed.' }
         format.json { render action: 'show', status: :created, location: @biannual }
       else
         format.html { render action: 'new' }
@@ -59,7 +59,7 @@ class BiannualsController < ApplicationController
   def update
     respond_to do |format|
       if @biannual.update(biannual_params)
-        format.html { redirect_to :back, notice: 'Biannual was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Item successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
