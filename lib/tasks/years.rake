@@ -2,6 +2,11 @@ namespace :app do
 
   desc "Populate Years with data"
   task :populate_years => :environment do
+    @years = Year.all
+    @years.each do |active|
+      active.update_attribute :completed, true
+      active.update_attribute :completed_by, "NotClaimed"
+    end
 
     #INSERT THESE
     [

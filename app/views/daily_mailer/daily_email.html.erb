@@ -4,12 +4,15 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Daily Tasks That still need to be completed:</h1>
+    <h1><%= @uncompleted.count %> Daily Tasks That still need to be completed:</h1>
     <ul>
       <% @uncompleted.each do |item| %>
         <li><%= item.title %></li>
       <% end %>
     </ul>
+    <div>
+      <p><%= link_to "Daily Tasks", @url %></p>
+    </div>
   </body>
 </html>
 

@@ -2,6 +2,11 @@ namespace :app do
 
   desc "Populate Bi-Annuals with data"
   task :populate_biannuals => :environment do
+    @biannuals = Biannual.all
+    @biannuals.each do |active|
+      active.update_attribute :completed, true
+      active.update_attribute :completed_by, "NotClaimed"
+    end
 
     #INSERT THESE
     [

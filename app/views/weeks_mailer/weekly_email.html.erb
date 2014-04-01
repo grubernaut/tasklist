@@ -4,30 +4,42 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Weekly Tasks That still need to be completed:</h1>
+    <h1><%= @wuncompleted.count %> Weekly Tasks That still need to be completed:</h1>
     <ul>
       <% @wuncompleted.each do |item| %>
         <li><%= item.title %></li>
       <% end %>
     </ul>
-    <h1>Monthly Tasks that still need to be completed:</h1>
+    <div>
+      <p><%= link_to "Weekly Tasks", @wurl %></p>
+    </div>
+    <h1><%= @muncompleted.count %> Monthly Tasks that still need to be completed:</h1>
     <ul>
       <% @muncompleted.each do |item| %>
         <li><%= item.title %></li>
       <% end %>
     </ul>
-    <h1>Bi-Annual Tasks that still need to be completed:</h1>
+    <div>
+      <p><%= link_to "Monthly Tasks", @murl %></p>
+    </div>
+    <h1><%= @buncompleted.count %> Bi-Annual Tasks that still need to be completed:</h1>
     <ul>
       <% @buncompleted.each do |item| %>
         <li><%= item.title %></li>
       <% end %>
     </ul>
-    <h1>Yearly Tasks that still need to be completed:</h1>
+    <div>
+      <p><%= link_to "Biannual Tasks", @burl %></p>
+    </div>
+    <h1><%= @yuncompleted.count %> Yearly Tasks that still need to be completed:</h1>
     <ul>
       <% @yuncompleted.each do |item| %>
         <li><%= item.title %></li>
       <% end %>
     </ul>
+    <div>
+      <p><%= link_to "Yearly Tasks", @yurl %></p>
+    </div>
   </body>
 </html>
 

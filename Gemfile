@@ -42,6 +42,9 @@ gem 'whenever', :require => false
 #Will_Paginate for paging list items
 gem 'will_paginate', '~> 3.0.5'
 
+# Figaro Gem for Environment Configs
+gem 'figaro'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

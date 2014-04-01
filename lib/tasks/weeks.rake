@@ -2,6 +2,11 @@ namespace :app do
 
   desc "Populate Weeks with data"
   task :populate_weeks => :environment do
+    @weeks = Week.all
+    @weeks.each do |active|
+      active.update_attribute :completed, true
+      active.update_attribute :completed_by, "NotClaimed"
+    end
 
     #INSERT THESE
     [

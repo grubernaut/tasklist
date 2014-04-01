@@ -28,7 +28,7 @@ namespace :app do
   end
 
   desc "Alert Day"
-  task :alert_dailies => :environment do
+  task :alert_days => :environment do
     #Week.alert
     @active = Daily.active
     DailyMailer.daily_email(@active).deliver
