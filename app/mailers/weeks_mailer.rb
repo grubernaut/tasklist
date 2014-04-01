@@ -10,6 +10,6 @@ class WeeksMailer < ActionMailer::Base
     @murl = 'http://checklist.data-cave.com:3000/months'
     @burl = 'http://checklist.data-cave.com:3000/biannuals'
     @yurl = 'http://checklist.data-cave.com:3000/years'
-    mail(to: 'jchamplin@thedatacave.com, pgill@thedatacave.com', subject: 'Weekly Task Report')
+    mail(to: 'network.operations@thedatacave.com, facilities@thedatacave.com', subject: 'Weekly Task Report')
   end
 end

@@ -4,6 +4,6 @@ class DailyMailer < ActionMailer::Base
   def daily_email(uncompleted)
     @uncompleted = uncompleted
     @url = 'http://checklist.data-cave.com:3000/dailies'
-    mail(to: 'jchamplin@thedatacave.com, pgill@thedatacave.com', subject: "Daily Task Report")
+    mail(to: 'network.operations@thedatacave.com, facilities@thedatacave.com', subject: "Daily Task Report")
   end
 end
