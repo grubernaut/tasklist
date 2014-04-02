@@ -38,10 +38,12 @@ end
 
 every [ :monday, :tuesday, :wednesday, :thursday, :friday] , :at => '4pm' do 
   rake "app:alert_days"
+  rake "app:alert_slack_days"
 end
 
 every :thursday, :at => '4pm' do
   rake "app:alert_weeks"
+  rake "app:alert_slack_weeks"
 end
 #every 2.minutes do
   #rake "app:alert_weeks"

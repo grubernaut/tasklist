@@ -33,4 +33,34 @@ namespace :app do
     @active = Daily.active
     DailyMailer.daily_email(@active).deliver
   end
+
+  desc "Alert Day Slack"
+  task :alert_slack_days => :environment do
+  
+    payload_text = ""
+    @active = Daily.active
+    @active.each do |active|
+      payload_text << "\t-#{active.title}\n"
+    end
+
+    require 'net/http'
+    require 'uri'
+    require 'json'
+
+    uri = URI.parse("https://datacave.slack.com/services/hooks/incoming-webhook?token=#{ENV["SLACK_BOT_TOKEN"]}")
+    header = {'Content-Type' => 'text/json'}
+
+    payload = {
+      channel: "#devtest",
+      username: "Facilities-Checklist-Bot",
+      text: "Daily Tasks That Still Need Completed:\n#{payload_text}\n<http://checklist.data-cave.com/dailies|Daily Checklist>"
+    }
+
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    req = Net::HTTP::Post.new(uri.request_uri, header)
+    req.body = payload.to_json
+
+    resp = http.request(req)
+  end
 end
