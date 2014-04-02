@@ -6,10 +6,10 @@ class WeeksMailer < ActionMailer::Base
     @muncompleted = muncompleted
     @buncompleted = buncompleted
     @yuncompleted = yuncompleted
-    @wurl = 'http://checklist.data-cave.com:3000/weeks'
-    @murl = 'http://checklist.data-cave.com:3000/months'
-    @burl = 'http://checklist.data-cave.com:3000/biannuals'
-    @yurl = 'http://checklist.data-cave.com:3000/years'
-    mail(to: 'network.operations@thedatacave.com, facilities@thedatacave.com', subject: 'Weekly Task Report')
+    @wurl = 'http://checklist.data-cave.com/weeks'
+    @murl = 'http://checklist.data-cave.com/months'
+    @burl = 'http://checklist.data-cave.com/biannuals'
+    @yurl = 'http://checklist.data-cave.com/years'
+    mail(to: 'network.operations@thedatacave.com, facilities@thedatacave.com, jchamplin@thedatacave.com', subject: 'Weekly Task Report')
   end
 end
