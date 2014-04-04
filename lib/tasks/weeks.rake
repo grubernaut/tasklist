@@ -26,7 +26,9 @@ namespace :app do
     @mactive = Month.active
     @bactive = Biannual.active
     @yactive = Year.active
-    WeeksMailer.weekly_email(@wactive,@mactive,@bactive,@yactive).deliver
+    if @yactive.count > 0
+      WeeksMailer.weekly_email(@wactive,@mactive,@bactive,@yactive).deliver
+    end
   end
 
   desc "Alert Week Slack"

@@ -1,6 +1,6 @@
 #!/bin/bash
-rake app:populate_days
-rake app:populate_weeks
-rake app:populate_months
-rake app:populate_biannuals
-rake app:populate_years
+RAILS_ENV=production rake app:populate_days
+RAILS_ENV=production rake app:populate_weeks
+RAILS_ENV=production rake app:populate_months
+RAILS_ENV=production rake app:populate_biannuals
+RAILS_ENV=production rake app:populate_years
