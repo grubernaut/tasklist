@@ -38,33 +38,64 @@ namespace :app do
 
   desc "Alert Day Slack"
   task :alert_slack_days => :environment do
-  
-    payload_text = ""
-    @active = Daily.active
-    if @active.count > 0
-     @active.each do |active|
-       payload_text << "\t-#{active.title}\n"
-     end
+    require 'json'
+    require 'uri'
+    require 'json'
 
-     require 'net/http'
-     require 'uri'
-     require 'json'
+    uri = URI.parse("https://datacave.slack.com/services/hooks/incoming-webhook?token=#{ENV["SLACK_BOT_TOKEN"]}")
+    header = {'Content-Type' => 'text/json'}
 
-     uri = URI.parse("https://datacave.slack.com/services/hooks/incoming-webhook?token=#{ENV["SLACK_BOT_TOKEN"]}")
-     header = {'Content-Type' => 'text/json'}
-
+    comToday = []
+    unComToday = []
+    @days = Daily.find(:all, :order => "id desc", :limit => 12).reverse
+    @days.each do |daily|
+      if daily.completed
+        comToday << { :title => daily.title, :value => "By -> #{daily.completed_by}", :short => true}
+      else
+        unComToday << { :title => daily.title, :value => "Not Completed!", :short => true}
+      end
+    end
+    
+    if unComToday.length > 0
      payload = {
        channel: "#devtest",
        username: "Facilities-Checklist-Bot",
-       text: "Daily Tasks That Still Need Completed:\n#{payload_text}\n<http://checklist.data-cave.com/dailies|Daily Checklist>"
+       attachments: [
+         {
+           fallback: "Text Summary",
+           pretext: "Daily Snapshot for #{Date.today.to_s} of Completed Items:",
+           color: 'good',
+           fields: comToday
+         },
+         {
+           fallback: "Text Summary",
+           pretext: "Daily Snapshot for #{Date.today.to_s} of Uncompleted Items:",
+           color: 'danger',
+           fields: unComToday
+         }
+       ]
      }
-
-     http = Net::HTTP.new(uri.host, uri.port)
-     http.use_ssl = true
-     req = Net::HTTP::Post.new(uri.request_uri, header)
-     req.body = payload.to_json
-
-     resp = http.request(req)
+    else
+     payload = {
+       channel: "#devtest",
+       username: "Facilities-Checklist-Bot",
+       attachments: [
+          {
+           fallback: "Text Summary",
+           pretext: "Daily Snapshot for #{Date.today.to_s} of Completed Items:",
+           color: 'good',
+           fields: comToday
+          }
+        ]
+     }
     end
+
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    req = Net::HTTP::Post.new(uri.request_uri, header)
+    req.body = payload.to_json
+    resp = http.request(req)
+    puts resp
   end
+
 end

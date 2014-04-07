@@ -32,36 +32,92 @@ namespace :app do
   end
 
   desc "Alert Week Slack"
-  task :alert_slack_weeks => :environment do 
-    @wactive = Week.active
-    @mactive = Month.active
-    @bactive = Biannual.active
-    @yactive = Year.active
-
-    payload_week = ""
-    payload_month = ""
-    payload_biannual = ""
-    payload_year = ""
-
-    @wactive.each do |active|
-      payload_week << "\t-#{active.title}\n"
-    end
-
-    @mactive.each do |active|
-      payload_month << "\t-#{active.title}\n"
-    end
-
-    @bactive.each do |active|
-      payload_biannual << "\t-#{active.title}\n"
-    end
-
-    @yactive.each do |active|
-      payload_year << "\t-#{active.title}\n"
-    end
-
+  task :alert_slack_weeks => :environment do
     require 'net/http'
     require 'uri'
     require 'json'
+
+    @weeks = Week.find(:all, :order => "id desc", :limit => 4).reverse
+    @months = Month.find(:all, :order => "id desc", :limit => 6).reverse
+    @biannuals = Biannual.find(:all, :order => "id desc", :limit => 8).reverse
+    @years = Year.find(:all, :order => "id desc", :limit => 9).reverse
+
+    comWeek = []
+    comMonth = []
+    comBiannual = []
+    comYear = []
+    unComWeek = []
+    unComMonth = []
+    unComBiannual = []
+    unComYear = []
+
+    @weeks.each do |week|
+      if week.completed
+        comWeek << { :title => week.title, :value => "By -> #{week.completed_by}", :short => true}
+      else
+        unComWeek << { :title => week.title, :value => "Not Completed!", :short => true}
+      end
+    end
+
+    @months.each do |month|
+      if month.completed
+        comMonth << { :title => month.title, :value => "By -> #{month.completed_by}", :short => true}
+      else
+        unComMonth << { :title => month.title, :value => "Not Completed!", :short => true}
+      end
+    end
+
+    @biannuals.each do |biannual|
+      if biannual.completed
+        comBiannual << { :title => biannual.title, :value => "By -> #{biannual.completed_by}", :short => true}
+      else
+        unComBiannual << { :title => biannual.title, :value => "Not Completed!", :short => true}
+      end
+    end
+
+    @years.each do |year|
+      if year.completed
+        comYear << { :title => year.title, :value => "By -> #{year.completed_by}", :short => true}
+      else
+        unComYear << { :title => year.title, :value => "Not Completed!", :short => true}
+      end
+    end
+
+    # Week 
+    if comWeek.length < 1
+      comWeek << { :title => "No Weekly Items Completed" }
+    end
+
+    if unComWeek.length < 1
+      unComWeek << { :title => "No Weekly Items Left!" }
+    end
+
+    # Month
+    if comMonth.length < 1
+      comMonth << { :title => "No Monthly Items Completed" }
+    end
+
+    if unComMonth.length < 1
+      unComMonth << { :title => "No Monthly Items Left!" }
+    end
+
+    # Bi-Annual
+    if comBiannual.length < 1
+      comBiannual << { :title => "No Biannual Items Completed" }
+    end
+
+    if unComBiannual.length < 1
+      unComBiannual << { :title => "No Biannual Items Left!" }
+    end
+
+    # Year
+    if comYear.length < 1
+      comYear << { :title => "No Yearly Items Completed" }
+    end
+
+    if unComYear.length < 1
+      unComYear << { :title => "No Yearly Items Left!" }
+    end
 
     uri = URI.parse("https://datacave.slack.com/services/hooks/incoming-webhook?token=#{ENV["SLACK_BOT_TOKEN"]}")
     header = {'Content-Type' => 'text/json'}
@@ -69,7 +125,56 @@ namespace :app do
     payload = {
       channel: "#devtest",
       username: "Facilities-Checklist-Bot",
-      text: "<http://checklist.data-cave.com/weeks|Weekly Tasks> that Still Need Completed:\n#{payload_week}\n\n<http://checklist.data-cave.com/months|Monthly Tasks> that Still Need Completed:\n#{payload_month}\n\n<http://checklist.data-cave.com/biannuals|Bi-Annual Tasks> that Still Need Completed:\n#{payload_biannual}\n\n<http://checklist.data-cave.com/years|Yearly Tasks> that Still Need Completed:\n#{payload_year}"
+      attachments: [
+        {
+          fallback: "Text Summary",
+          pretext: "#{Date.today.to_s} Weekly Snapshot of Completed Weekly Items:",
+          color: 'good',
+          fields: comWeek
+        },
+        {
+          fallback: "Text Summary",
+          pretext: "#{Date.today.to_s} Weekly Snapshot of UnCompleted Weekly Items:",
+          color: 'danger',
+          fields: unComWeek
+        },
+        {
+          fallback: "Text Summary",
+          pretext: "#{Date.today.to_s} Weekly Snapshot of Completed Monthly Items:",
+          color: 'good',
+          fields: comMonth
+        },
+        {
+          fallback: "Text Summary",
+          pretext: "#{Date.today.to_s} Weekly Snapshot of UnCompleted Monthly Items:",
+          color: 'danger',
+          fields: unComMonth
+        },
+        {
+          fallback: "Text Summary",
+          pretext: "#{Date.today.to_s} Weekly Snapshot of Completed Biannual Items:",
+          color: 'good',
+          fields: comBiannual
+        },
+        {
+          fallback: "Text Summary",
+          pretext: "#{Date.today.to_s} Weekly Snapshot of UnCompleted Biannual Items:",
+          color: 'danger',
+          fields: unComBiannual
+        },
+        {
+          fallback: "Text Summary",
+          pretext: "#{Date.today.to_s} Weekly Snapshot of Completed Yearly Items:",
+          color: 'good',
+          fields: comYear
+        },
+        {
+          fallback: "Text Summary",
+          pretext: "#{Date.today.to_s} Weekly Snapshot of UnCompleted Yearly Items:",
+          color: 'danger',
+          fields: unComYear
+        }
+      ]
     }
 
     http = Net::HTTP.new(uri.host, uri.port)
@@ -78,5 +183,7 @@ namespace :app do
     req.body = payload.to_json
 
     resp = http.request(req)
+    puts resp
   end
+
 end
