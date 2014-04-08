@@ -1,13 +1,13 @@
 <%=form_for(year, url: complete_year_path(year), method: :put) do |f|%>
   <% if year.completed? %>
     <%= f.check_box :completed, :disabled => true %>
-    <%= f.text_field :title, :size => 60, :disabled => true, :value => year.title %>
-    <%= f.text_field :completed_by, :size => 10, :disabled => true, :value => year.completed_by %>
-    <%= f.text_field :updated_at, :size => 12, :disabled => true, :value => year.updated_at.to_s(:short) %>
+    <%= f.text_field :title, :size => 60, :disabled => true, :value => year.title, class: "todo-title" %>
+    <%= f.text_field :completed_by, :size => 10, :disabled => true, :value => year.completed_by, class: "todo-name" %>
+    <%= f.text_field :updated_at, :size => 12, :disabled => true, :value => year.updated_at.to_s(:short), class: "todo-time" %>
     <button type="submit">UnComplete Task</button>
   <% else %> 
     <%= f.check_box :completed, :disabled => true %>
-    <%= f.text_field :title, :size => 60, :disabled => true, :value => year.title %>
+    <%= f.text_field :title, :size => 60, :disabled => true, :value => year.title, class: "todo-title" %>
     <%= f.hidden_field :completed_by %>
     <button type="submit">Complete Task</button>
   <% end %> 

@@ -1,13 +1,13 @@
 <%=form_for(month, url: complete_month_path(month), method: :put) do |f|%>
   <% if month.completed? %>
     <%= f.check_box :completed, :disabled => true %>
-    <%= f.text_field :title, :size => 60, :disabled => true, :value => month.title %>
-    <%= f.text_field :completed_by, :size => 10, :disabled => true, :value => month.completed_by %>
-    <%= f.text_field :updated_at, :size => 12, :disabled => true, :value  => month.updated_at.to_s(:short) %>
+    <%= f.text_field :title, :size => 60, :disabled => true, :value => month.title, class: "todo-title" %>
+    <%= f.text_field :completed_by, :size => 10, :disabled => true, :value => month.completed_by, class: "todo-name" %>
+    <%= f.text_field :updated_at, :size => 12, :disabled => true, :value  => month.updated_at.to_s(:short), class: "todo-time" %>
     <button type="submit">UnComplete Task</button>
   <% else %> 
     <%= f.check_box :completed, :disabled => true %>
-    <%= f.text_field :title, :size => 60, :disabled => true, :value => month.title %>
+    <%= f.text_field :title, :size => 60, :disabled => true, :value => month.title, class: "todo-title" %>
     <%= f.hidden_field :completed_by, :size => 15, :disabled => true, :value => month.title%>
     <button type="submit">Complete Task</button>
   <% end %> 
