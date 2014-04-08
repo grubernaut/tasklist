@@ -1,0 +1,13 @@
+<%# add navigation links to this file %>
+<% if user_signed_in? %>
+  <li><%= link_to "Dailies", dailies_path %></li>
+  <li><%= link_to "Weeks", weeks_path %></li>
+  <li><%= link_to "Months", months_path %></li>
+  <li><%= link_to "Bi-Annuals", biannuals_path %></li>
+  <li><%= link_to "Years", years_path %></li>
+
+  <%= link_to 'Change Password', edit_user_registration_path %>
+  <%= link_to 'Logout', destroy_user_session_path, :method => 'delete' %>
+<% else %> 
+  <li><%=link_to 'Login', new_user_session_path %></li>
+<% end %>

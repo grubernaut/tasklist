@@ -26,13 +26,15 @@ gem 'jbuilder', '~> 1.2'
 
 # Devise for LDAP 
 gem 'devise'
-gem 'devise_ldap_authenticatable'
+gem 'devise_ldap_authenticatable', :git => "git://github.com/cschiewek/devise_ldap_authenticatable.git"
 gem 'devise-encryptable'
 
 #Bootstrap For Fancy Things
 gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 gem 'less-rails'
+gem 'bootstrap-sass'
+gem 'rails_layout'
 
 #Whenever For Automagically Adding Things
 gem 'whenever', :require => false

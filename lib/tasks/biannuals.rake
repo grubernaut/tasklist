@@ -4,8 +4,10 @@ namespace :app do
   task :populate_biannuals => :environment do
     @biannuals = Biannual.all
     @biannuals.each do |active|
-      active.update_attribute :completed, true
-      active.update_attribute :completed_by, "NotClaimed"
+      if active.completed == false
+        active.update_attribute :completed, true
+        active.update_attribute :completed_by, "NotClaimed"
+      end
     end
 
     #INSERT THESE

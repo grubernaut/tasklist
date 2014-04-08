@@ -4,8 +4,10 @@ namespace :app do
   task :populate_years => :environment do
     @years = Year.all
     @years.each do |active|
-      active.update_attribute :completed, true
-      active.update_attribute :completed_by, "NotClaimed"
+      if active.completed == false
+        active.update_attribute :completed, true
+        active.update_attribute :completed_by, "NotClaimed"
+      end
     end
 
     #INSERT THESE
