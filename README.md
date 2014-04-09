@@ -76,6 +76,7 @@ With Devise and LDAP, the config file for LDAP is config/ldap.yml
 	<li>Many more that I haven't thought of yet...</li>
 <ul>
 
-### Contact Me 
+## Contact Me 
 Jake Champlin - jake.champlin.27[at]gmail.com
+
 [Twitter](https://twitter.com/grubernaut)
