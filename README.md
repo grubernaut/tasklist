@@ -25,13 +25,20 @@ task or not, necessary information for any audit situation.
 - Edit each Rake Task lib/tasks/{dailies,weeks,months,biannuals,years} with the correct
   tasks that need to be completed. 
 - Run the ./populate_once.sh script to populate the columns with initial values. 
-- Run ```ruby
+```bash
+$ cd RAILS_ROOT; ./populate_once.sh
+```
+
+- Install Devise, without over-writing any configuration files:
+```ruby
 	rails g devise:install
-	```
-	Without over-writing any config files. 
-- Run ```ruby
+```
+
+- Generate Devise LDAP Authenticatable: 
+```ruby
 	rails g devise_ldap_authenticatable:install
-	```
+```
+
 - Edit the generated config/ldap.yml config file as needed to provide correct LDAP
   parameters for the devise gem. 
 - Profit? 
@@ -55,7 +62,7 @@ With Devise and LDAP, the config file for LDAP is config/ldap.yml
 	<li>turbolinks</li>
 	<li>jbuilder</li>
 	<li>devise</li>
-	<li>[devise_ldap_authenticatable](https://github.com/cschiewek/devise_ldap_authenticatable)</li>
+	<li>devise_ldap_authenticatable</li>
 	<li>devise-encryptable</li>
 	<li>twitter-bootstrap-rails</li>
 	<li>therubyracer</li>
@@ -74,7 +81,7 @@ With Devise and LDAP, the config file for LDAP is config/ldap.yml
 	<li>Report Generator</li>
 	<li>Authentication Bug on Password Change</li>
 	<li>Many more that I haven't thought of yet...</li>
-<ul>
+</ul>
 
 ## Contact Me 
 Jake Champlin - jake.champlin.27[at]gmail.com
