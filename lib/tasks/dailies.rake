@@ -18,7 +18,6 @@ namespace :app do
       {:title => "Inspect West Side Drainage", :completed => false},
       {:title => "Inspect East and West Building AC Units for Office Area", :completed => false},
       {:title => "Check for Overall Leaks in Maintenance Areas", :completed => false},
-      {:title => "Inspect all Breakers", :completed => false},
       {:title => "Inspect Switchgear", :completed => false},
       {:title => "Verify no Faults or Warnings on UPS Flywheels", :completed => false},
       {:title => "Verify no Faults or Warnings on Chillers", :completed => false},
@@ -49,7 +48,7 @@ namespace :app do
 
     comToday = []
     unComToday = []
-    @days = Daily.find(:all, :order => "id desc", :limit => 12).reverse
+    @days = Daily.find(:all, :order => "id desc", :limit => ENV["DAILY_ITEMS"]).reverse
     @days.each do |daily|
       if daily.completed
         comToday << { :title => daily.title, :value => "By -> #{daily.completed_by}", :short => true}

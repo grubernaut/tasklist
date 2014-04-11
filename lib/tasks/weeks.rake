@@ -14,8 +14,8 @@ namespace :app do
     [
       {:title => "Start Test Cummins Generators", :completed => false},
       {:title => "Inspect interior of Cummins Generators", :completed => false},
-      {:title => "Check Water Quality in the Wells", :completed => false},
-      {:title => "Check Salt in Brine Tanks", :completed => false},
+      {:title => "Check Quality of Process Water", :completed => false},
+      {:title => "Check Salt Janitor Closet", :completed => false},
     ].each do |attributes|
       Week.create(attributes)
     end
@@ -39,10 +39,10 @@ namespace :app do
     require 'uri'
     require 'json'
 
-    @weeks = Week.find(:all, :order => "id desc", :limit => 4).reverse
-    @months = Month.find(:all, :order => "id desc", :limit => 6).reverse
-    @biannuals = Biannual.find(:all, :order => "id desc", :limit => 8).reverse
-    @years = Year.find(:all, :order => "id desc", :limit => 9).reverse
+    @weeks = Week.find(:all, :order => "id desc", :limit => ENV["WEEKLY_ITEMS"]).reverse
+    @months = Month.find(:all, :order => "id desc", :limit => ENV["MONTHLY_ITEMS"]).reverse
+    @biannuals = Biannual.find(:all, :order => "id desc", :limit => ENV["BIANNUAL_ITEMS"]).reverse
+    @years = Year.find(:all, :order => "id desc", :limit => ENV["YEARLY_ITEMS"]).reverse
 
     comWeek = []
     comMonth = []

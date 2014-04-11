@@ -21,6 +21,7 @@ namespace :app do
       {:title => "Check Connections on Switchgear", :completed => false},
       {:title => "Take AMP Reading of the Well Motors", :completed => false},
       {:title => "Check Connections on the PDUs", :completed => false},
+      {:title => "Vendor Checked Gaseous Fire Suppression", :completed => false},
     ].each do |attributes|
       Year.create(attributes)
     end

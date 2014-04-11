@@ -17,6 +17,7 @@ namespace :app do
       {:title => "Inspect and Grease Liebert CRAC Units", :completed => false},
       {:title => "Spot Check inside of Liebert CRAC Units + Filter Check", :completed => false},
       {:title => "Check Gaseous Fire Suppression", :completed => false},
+      {:title => "Check Salt in Brine Tanks", :completed => false},
       {:title => "Check Fire Extinguishers", :completed => false},
     ].each do |attributes|
       Month.create(attributes)

@@ -4,7 +4,7 @@ class BiannualsController < ApplicationController
   # GET /biannuals
   # GET /biannuals.json
   def index
-    @biannuals = Biannual.all.order('created_at DESC').page(params[:page]).per_page(8)
+    @biannuals = Biannual.all.order('created_at DESC').page(params[:page]).per_page(ENV["BIANNUAL_ITEMS"].to_i)
   end
 
   # GET /biannuals/1

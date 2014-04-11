@@ -5,7 +5,7 @@ class DailiesController < ApplicationController
   # GET /dailies
   # GET /dailies.json
   def index
-    @dailies = Daily.all.order('created_at DESC').page(params[:page]).per_page(12)
+    @dailies = Daily.all.order('created_at DESC').page(params[:page]).per_page(ENV["DAILY_ITEMS"].to_i)
   end
 
   # GET /dailies/1

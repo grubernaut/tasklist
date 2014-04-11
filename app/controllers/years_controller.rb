@@ -5,7 +5,7 @@ class YearsController < ApplicationController
   # GET /years
   # GET /years.json
   def index
-    @years = Year.all.order('created_at DESC').page(params[:page]).per_page(9)
+    @years = Year.all.order('created_at DESC').page(params[:page]).per_page(ENV["YEARLY_ITEMS"].to_i)
   end
 
   # GET /years/1

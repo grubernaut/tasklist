@@ -5,7 +5,7 @@ class MonthsController < ApplicationController
   # GET /months
   # GET /months.json
   def index
-    @months = Month.all.order('created_at DESC').page(params[:page]).per_page(6)
+    @months = Month.all.order('created_at DESC').page(params[:page]).per_page(ENV["MONTHLY_ITEMS"].to_i)
   end
 
   # GET /months/1

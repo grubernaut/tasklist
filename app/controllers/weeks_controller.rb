@@ -5,7 +5,7 @@ class WeeksController < ApplicationController
   # GET /weeks
   # GET /weeks.json
   def index
-    @weeks = Week.all.order('created_at DESC').page(params[:page]).per_page(4)
+    @weeks = Week.all.order('created_at DESC').page(params[:page]).per_page(ENV["WEEKLY_ITEMS"].to_i)
   end
 
   # GET /weeks/1
