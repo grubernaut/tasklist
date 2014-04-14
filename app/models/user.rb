@@ -9,7 +9,11 @@ class User < ActiveRecord::Base
 
     raise "Need to auth password first" if @current_password.blank?
 
-    Devise::LDAP::Adapter.update_own_password(login_with, @new_password, @current_password)
+    if (Devise::LDAP::Adapter.valid_credentials?(login_with,@current_password))
+      Devise::LDAP::Adapter.update_own_password(login_with, @new_password, @current_password)
+    else
+      errors[:base] << "Error authenticating stuffs!"
+    end
   end
 
 end

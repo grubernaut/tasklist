@@ -68,6 +68,7 @@ section {
   @extend .well;
 }
 #error_explanation {
+  max-width: 270px;
   @extend .alert;
   @extend .alert-danger;
 }
