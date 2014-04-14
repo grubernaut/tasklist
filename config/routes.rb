@@ -1,4 +1,5 @@
 Tasklist::Application.routes.draw do
+  get "report/index"
   resources :biannuals do
     member do
       put :update

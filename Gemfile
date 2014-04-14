@@ -36,6 +36,9 @@ gem 'less-rails'
 gem 'bootstrap-sass'
 gem 'rails_layout'
 
+#DateSelectJQueryBootstrap
+gem 'bootstrap-daterangepicker-rails'
+
 #Whenever For Automagically Adding Things
 gem 'whenever', :require => false
 
