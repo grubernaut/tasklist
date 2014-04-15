@@ -99,4 +99,11 @@ namespace :app do
     puts resp
   end
 
+  desc "Clear Days from Data"
+  task :clear_days => :environment do
+    @days = Daily.all
+    @days.each do |day|
+      day.destroy
+    end
+  end
 end

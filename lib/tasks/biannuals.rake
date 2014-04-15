@@ -24,4 +24,12 @@ namespace :app do
       Biannual.create(attributes)
     end
   end
+
+  desc "Clear Bi-Annuals from data"
+  task :clear_biannuals => :environment do
+    @biannuals = Biannual.all
+    @biannuals.each do |biannual|
+      biannual.destroy
+    end
+  end
 end

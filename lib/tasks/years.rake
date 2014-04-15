@@ -26,4 +26,13 @@ namespace :app do
       Year.create(attributes)
     end
   end
+
+  desc "UnPopulate Years with data"
+  task :clear_years => :environment do
+    @years = Year.all
+    @years.each do |year|
+      year.destroy
+    end
+  end
+
 end

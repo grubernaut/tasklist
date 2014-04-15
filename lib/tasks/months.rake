@@ -23,4 +23,12 @@ namespace :app do
       Month.create(attributes)
     end
   end
+
+  desc "Clear Months from data"
+  task :clear_months => :environment do
+    @months = Month.all
+    @months.each do |month|
+      month.destroy
+    end
+  end
 end

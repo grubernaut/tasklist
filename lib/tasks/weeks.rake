@@ -188,4 +188,11 @@ namespace :app do
     puts resp
   end
 
+  desc "Clear Week Tasks from Data"
+  task :clear_weeks => :environment do
+    @weeks = Week.all
+    @weeks.each do |week|
+      week.destroy
+    end
+  end
 end
