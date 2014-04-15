@@ -59,7 +59,7 @@ namespace :app do
     
     if unComToday.length > 0
      payload = {
-       channel: "#devtest",
+       channel: "#{ENV["SLACK_CHANNEL"]}",
        username: "Facilities-Checklist-Bot",
        attachments: [
          {
@@ -78,7 +78,7 @@ namespace :app do
      }
     else
      payload = {
-       channel: "#devtest",
+       channel: "#{ENV["SLACK_CHANNEL"]}",
        username: "Facilities-Checklist-Bot",
        attachments: [
           {

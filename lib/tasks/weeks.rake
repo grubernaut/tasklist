@@ -125,7 +125,7 @@ namespace :app do
     header = {'Content-Type' => 'text/json'}
 
     payload = {
-      channel: "#devtest",
+      channel: "#{ENV["SLACK_CHANNEL"]}",
       username: "Facilities-Checklist-Bot",
       attachments: [
         {
