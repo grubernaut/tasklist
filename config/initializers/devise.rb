@@ -4,17 +4,18 @@ Devise.setup do |config|
   # ==> LDAP Configuration 
   # config.ldap_logger = true
    config.ldap_create_user = true
-   config.ldap_update_password = true
+   config.ldap_update_password = false
   # config.ldap_config = "#{Rails.root}/config/ldap.yml"
-   config.ldap_check_group_membership = true
+   #config.ldap_check_group_membership = true
+   config.ldap_check_group_membership_without_admin = true
    #config.ldap_check_attributes = true
-   config.ldap_use_admin_to_bind = true
+   #config.ldap_use_admin_to_bind = false
   # config.ldap_ad_group_check = false
   
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  config.secret_key = '4b3b375a5a4a41696190dea01955ea5d875371417bcf18448a621f843069778ac93316f5dc9b7e9374a4c54c008ea11d92e7bc05689beb0c9131bfbbf4f7dbd0'
+  config.secret_key = '4b3b375a5a4a1696190dea01955ea5d875371417bcf18448a621f843069778ac93316f5dc9b7e9374a4c54c008ea11d92e7bc05689beb0c9131bfbbf4f7dbd0'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,

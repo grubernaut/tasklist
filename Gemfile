@@ -26,7 +26,8 @@ gem 'jbuilder', '~> 1.2'
 
 # Devise for LDAP 
 gem 'devise'
-gem 'devise_ldap_authenticatable', :git => "git://github.com/cschiewek/devise_ldap_authenticatable.git"
+#gem 'devise_ldap_authenticatable', :git => "git://github.com/cschiewek/devise_ldap_authenticatable.git"
+gem 'devise_ldap_authenticatable', :git => "git://github.com/jchampy/devise_ldap_authenticatable.git"
 gem 'devise-encryptable'
 
 #Bootstrap For Fancy Things
