@@ -81,12 +81,11 @@ With Devise and LDAP, the config file for LDAP is config/ldap.yml
 	<li>Report Generator</li>
 	<li>iOS / Android / Mobile Views</li>
 	<li>Many more that I haven't thought of yet...</li>
-	<li>Authentication Bug on Password Change</li>
 </ul>
 
 ## Completed TODO Items: 
 <ul>
-	<li>~~Authentication Bug on Password Change~~</li>
+	<li>Authentication Bug on Password Change</li>
 </ul>
 
 ## Contact Me 
