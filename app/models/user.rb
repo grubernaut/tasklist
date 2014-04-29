@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
       if (Devise::LDAP::Adapter.valid_credentials?(login_with,@current_password))
         Devise::LDAP::Adapter.update_own_password(login_with, @new_password, @current_password)
       else
-        errors[:base] << "Error authenticating stuffs!"
+        errors[:base] << "Incorrect Password Given"
       end
     else
         errors[:base] << "New Passwords do not match!"
