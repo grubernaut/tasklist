@@ -11,15 +11,20 @@ namespace :app do
     end
 
     #INSERT THESE
+    attributes = 
     [
       {:title => "Start Test Cummins Generators", :completed => false},
       {:title => "Inspect interior of Cummins Generators", :completed => false},
       {:title => "Check Quality of Process Water", :completed => false},
       {:title => "Check Salt Janitor Closet", :completed => false},
-    ].each do |attributes|
-      Week.create(attributes)
+    ]
+
+    raise "Env Variable mismatch in rake task\napplication.yml!=weeks.rake\n#{ENV["WEEKLY_ITEMS"]}!=#{attributes.length}" unless attributes.length == ENV["WEEKLY_ITEMS"].to_i
+    attributes.each do |attribute|
+      Week.create(attribute)
     end
   end
+
 
   desc "Alert Week"
   task :alert_weeks => :environment do

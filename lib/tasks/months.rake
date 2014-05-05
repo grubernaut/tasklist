@@ -11,6 +11,7 @@ namespace :app do
     end
 
     #INSERT THESE
+    attributes = 
     [
       {:title => "Inspect and Grease Cooling Towers", :completed => false},
       {:title => "Inspect and Grease Water Pumps", :completed => false},
@@ -19,8 +20,12 @@ namespace :app do
       {:title => "Check Gaseous Fire Suppression", :completed => false},
       {:title => "Check Salt in Brine Tanks", :completed => false},
       {:title => "Check Fire Extinguishers", :completed => false},
-    ].each do |attributes|
-      Month.create(attributes)
+    ]
+
+    raise "Env Variable mismatch in rake task\napplication.yml!=months.rake\n#{ENV["MONTHLY_ITEMS"]}!=#{attributes.length}" unless attributes.length == ENV["MONTHLY_ITEMS"].to_i
+    
+    attributes.each do |attribute|
+      Month.create(attribute)
     end
   end
 

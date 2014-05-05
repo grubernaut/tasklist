@@ -11,6 +11,7 @@ namespace :app do
     end
 
     #INSERT THESE
+    attributes = 
     [
       {:title => "Gaseous Fire Suppression Checked by Vendor", :completed => false},
       {:title => "Test Emergency Lights and Exit Signs", :completed => false},
@@ -20,9 +21,14 @@ namespace :app do
       {:title => "Test Switchgear during Generator Logic Test", :completed => false},
       {:title => "Visually Inspect Trane Chillers", :completed => false},
       {:title => "Inspect and Test Water Sensors", :completed => false},
-    ].each do |attributes|
-      Biannual.create(attributes)
+    ]
+
+    raise "Env Variable mismatch in rake task\napplication.yml!=biannuals.rake\n#{ENV["BIANNUAL_ITEMS"]}!=#{attributes.length}" unless attributes.length == ENV["BIANNUAL_ITEMS"].to_i
+
+    attributes.each do |attribute|
+      Biannual.create(attribute)
     end
+
   end
 
   desc "Clear Bi-Annuals from data"
