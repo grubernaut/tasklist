@@ -11,6 +11,7 @@ namespace :app do
     end
 
     #INSERT THESE
+    attributes = 
     [
       {:title => "Inspect Generators", :completed => false},
       {:title => "Inspect Cooling Towers", :completed => false},
@@ -23,8 +24,12 @@ namespace :app do
       {:title => "Verify no Faults or Warnings on Chillers", :completed => false},
       {:title => "Verify no Faults or Warnings on PDUs", :completed => false},
       {:title => "Change Water Filter in Cooling Towers", :completed => false},
-    ].each do |attributes|
-      Daily.create(attributes)
+    ]
+
+    raise "Env Variable mismatch in rake task\napplication.yml!=dailies.rake\n#{ENV["DAILY_ITEMS"]}!=#{attributes.length}" unless attributes.length == ENV["DAILY_ITEMS"].to_i
+   
+    attributes.each do |attribute|
+      Daily.create(attribute)
     end
   end
 

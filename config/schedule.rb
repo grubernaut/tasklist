@@ -18,13 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-#
-#every 2.minutes do
-#  rake "app:populate_weeks"
-#  rake "app:populate_years"
-#  rake "app:populate_months"
-#end
-#
+
 every [ :monday, :tuesday, :wednesday, :thursday, :friday] , :at => '11:59pm' do
   rake "app:populate_days"
 end
@@ -45,6 +39,3 @@ every :thursday, :at => '2pm' do
   rake "app:alert_weeks"
   rake "app:alert_slack_weeks"
 end
-#every 2.minutes do
-  #rake "app:alert_weeks"
-#end

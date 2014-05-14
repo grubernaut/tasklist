@@ -11,6 +11,7 @@ namespace :app do
     end
 
     #INSERT THESE
+    attributes = 
     [
       {:title => "Change Filters in Liebert CRAC Units", :completed => false},
       {:title => "Fire Extinguishers Inspected by Vendor", :completed => false},
@@ -22,9 +23,13 @@ namespace :app do
       {:title => "Take AMP Reading of the Well Motors", :completed => false},
       {:title => "Check Connections on the PDUs", :completed => false},
       {:title => "Vendor Checked Gaseous Fire Suppression", :completed => false},
-    ].each do |attributes|
-      Year.create(attributes)
+    ]
+
+    raise "Env Variable mismatch in rake task\napplication.yml!=years.rake\n#{ENV["YEARLY_ITEMS"]}!=#{attributes.length}" unless attributes.length == ENV["YEARLY_ITEMS"].to_i
+    attributes.each do |attribute|
+      Year.create(attribute)
     end
+
   end
 
   desc "UnPopulate Years with data"
