@@ -1,0 +1,22 @@
+<table class="table table-bordered table-striped" style="margin: 20px">
+	<thead>
+		<tr>
+			<th>Task</th>
+			<th>Completed By</th>
+			<th>Completed On</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @months.each do |month| %>
+			<tr>
+				<td><%= month.title %></td>
+				<% if month.completed %>
+					<td><%= month.completed_by %></td>
+				<% else %>
+					<td>---</td>
+				<% end %>
+				<td><%= month.updated_at.to_s %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

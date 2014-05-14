@@ -13,6 +13,14 @@
 
 ActiveRecord::Schema.define(version: 20140314200042) do
 
+  create_table "reports", force: true do |t|
+    t.string "name"
+    t.datetime "range_start"
+    t.datetime "range_end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "biannuals", force: true do |t|
     t.string   "title"
     t.string   "completed_by"

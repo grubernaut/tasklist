@@ -1,31 +1,34 @@
-<h1>Report Generator</h1>
+<div class="reports_list">
+  <h1>Listing Reports:</h1>
 
-<br>
-</br>
+  <a href="javascript:void(0)" class="toggleDayLink">Show/Hide Days</a><br />
+  <a href="javascript:void(0)" class="toggleWeekLink">Show/Hide Weeks</a><br />
+  <a href="javascript:void(0)" class="toggleMonthLink">Show/Hide Months</a><br />
+  <a href="javascript:void(0)" class="toggleBiannualLink">Show/Hide Biannuals</a><br />
+  <a href="javascript:void(0)" class="toggleYearLink">Show/Hide Years</a><br />
 
-<label for="reportrange">Report Dates:</label>
-<div id="reportrange">
-  <i class="glyphicon glyphicon-calendar"></i>
-  <span><?php echo date("F j, Y", strtotime('-30 day')); ?> - <?php echo date("F j, Y"); ?></span> <b class="caret"></b>
+  <div id="toggle_div_days" style="display:none">
+  	<h2>Daily Report</h2>
+    <%= render "days" %>
+  </div>
+
+  <div id="toggle_div_weeks" style="display:none">
+  	<h2>Weekly Report</h2>
+  	<%= render "weeks" %>
+  </div>
+
+  <div id="toggle_div_months" style="display:none">
+  	<h2>Monthly Report</h2>
+  	<%= render "months" %>
+  </div>
+
+  <div id="toggle_div_biannuals" style="display:none">
+  	<h2>Biannual Report</h2>
+  	<%= render "biannuals" %>
+  </div>
+
+  <div id="toggle_div_years" style="display:none">
+  	<h2>Yearly Report</h2>
+  	<%= render "years" %>
+  </div>
 </div>
-
-<script type="text/javascript">
-  $('#reportrange').daterangepicker(
-  {
-    ranges: {
-      'Today': [moment(), moment()],
-      'Yesterday': [moment().subtract('days',1), moment().subtract('days',1)],
-      'Last 7 Days': [moment().subtract('days',6), moment()],
-      'Last 30 Days': [moment().subtract('days',29), moment()],
-      'This Month': [moment().startOf('month'), moment().endOf('month')],
-      'Last Month': [moment().subtract('month',1).startOf('month'), moment().subtract('month',1).endOf('month')]
-    },
-    startDate: moment().subtract('days',29),
-    endDate: moment()
-  },
-  function(start,end) {
-    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY')).bind('ajax:success');
-  }
-);
-</script>
-
