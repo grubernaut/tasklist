@@ -25,7 +25,7 @@
 #  rake "app:populate_months"
 #end
 #
-every :day, :at => '11:59pm' do
+every [ :monday, :tuesday, :wednesday, :thursday, :friday] , :at => '11:59pm' do
   rake "app:populate_days"
 end
 
